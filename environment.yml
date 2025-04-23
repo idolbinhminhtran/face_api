@@ -1,10 +1,12 @@
 name: faceenv
 channels:
+  - defaults
   - conda-forge
 dependencies:
   - python=3.11
-  - dlib=19.24
-  - face_recognition
-  - flask
-  - flask-cors
-  - gunicorn
+  - pip
+  - pip:
+      - flask
+      - flask-cors
+      - face_recognition
+      - gunicorn  # ⬅️ ADD THIS LINE
