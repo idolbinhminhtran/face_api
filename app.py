@@ -24,6 +24,11 @@ app = Flask(__name__)
 CORS(app)
 app.config["MAX_CONTENT_LENGTH"] = 1 * 1024 * 1024  # 1 MB
 
+@app.route("/", methods=["GET"])
+def health():
+    return jsonify(status="ok"), 200
+
+
 @app.route("/recognize", methods=["POST"])
 def recognize():
     file = request.files.get("image")
