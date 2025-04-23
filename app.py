@@ -37,12 +37,12 @@ def recognize():
 
     # detect faces with the CNN model
     img = face_recognition.load_image_file(file)
-    face_locs = face_recognition.face_locations(img, model="cnn")
+    face_locs = face_recognition.face_locations(img, model="hog")
     if not face_locs:
         return jsonify(error="no_face"), 400
 
     # compute encodings with a bit of jitter for stability
-    encs = face_recognition.face_encodings(img, face_locs, num_jitters=2)
+    encs = face_recognition.face_encodings(img, face_locs)
     if not encs:
         return jsonify(error="no_encoding"), 400
 
