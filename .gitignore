@@ -1,0 +1,54 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+.coverage
+.coverage.*
+.cache/
+.pytest_cache/
+
+# Virtual environments
+env/
+venv/
+ENV/
+.env/
+.env.*
+
+# macOS
+.DS_Store
+
+# VSCode settings
+.vscode/
+
+# logs and database
+*.log
+*.sqlite3
+
+# Ignore raw known_people images (only embeddings are needed in models)
+known_people/
+
+# Heroku build artifacts (if any)
+*.tgz
+
+# Node modules (if mixing front-end builds)
+node_modules/
+
+# Ignore IDE files
+*.idea/
+*.iml
+
