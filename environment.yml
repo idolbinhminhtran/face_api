@@ -9,6 +9,7 @@ dependencies:
 
   # pip itself (so we can mix pip installs below)
   - pip
+  - google-cloud-texttospeech
 
   # the rest in pip
   - pip:

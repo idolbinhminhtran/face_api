@@ -1,9 +1,14 @@
 import os
 import json
 import numpy as np
+
 from flask import Flask, request, jsonify
 from flask_cors import CORS
+from flask import Flask, request, Response
+from google.cloud import texttospeech
 import face_recognition
+
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "tts_key.json"
 
 # --- load your labeled descriptors ---
 with open("models/labeled_descriptors.json", encoding="utf-8") as f:
@@ -65,8 +70,33 @@ def recognize():
         )
     else:
         return jsonify(error="unknown"), 404
+    
+@app.route("/tts", methods=["POST"])
+def tts():
+    data = request.get_json() or {}
+    text = data.get("text", "")
+    if not text:
+        return Response("Missing text", status=400)
+
+    client = texttospeech.TextToSpeechClient()
+    synthesis_input = texttospeech.SynthesisInput(text=text)
+    voice = texttospeech.VoiceSelectionParams(
+        language_code="vi-VN",
+        ssml_gender=texttospeech.SsmlVoiceGender.NEUTRAL
+    )
+    audio_config = texttospeech.AudioConfig(audio_encoding=texttospeech.AudioEncoding.MP3)
+
+    response = client.synthesize_speech(
+        input=synthesis_input,
+        voice=voice,
+        audio_config=audio_config
+    )
+
+    return Response(response.audio_content, mimetype="audio/mpeg")
 
 if __name__ == "__main__":
     host = os.getenv("HOST", "0.0.0.0") 
+    # host = os.getenv('127.0.0.1')
     port = int(os.getenv("PORT", 8080))
+    # port = int(os.getenv("PORT", 5000))
     app.run(host=host, port=port)
