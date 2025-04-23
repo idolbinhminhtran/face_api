@@ -33,7 +33,7 @@ EXPOSE 5000
 # 7. Run with Gunicorn inside the env
 # single‐line shell form (expands $PORT)
 # single‐line shell form (expands $PORT)
-CMD ["sh","-c","conda run --no-capture-output -n faceenv gunicorn --preload --workers 1 --threads 4 app:app --bind 0.0.0.0:$PORT --log-file -"]
+CMD ["sh","-c","conda run --no-capture-output -n faceenv gunicorn app:app --bind 0.0.0.0:$PORT --log-file -"]
 
 
 
