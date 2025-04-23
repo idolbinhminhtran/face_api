@@ -31,7 +31,11 @@ COPY . .
 EXPOSE 5000
 
 # 7. Run with Gunicorn inside the env
-CMD ["conda","run","--no-capture-output","-n","faceenv","gunicorn","app:app","--bind","0.0.0.0:$PORT","--log-file","-"]
+# single‐line shell form (expands $PORT)
+# single‐line shell form (expands $PORT)
+CMD ["sh","-c","conda run --no-capture-output -n faceenv gunicorn app:app --bind 0.0.0.0:$PORT --log-file -"]
+
+
 
 
 

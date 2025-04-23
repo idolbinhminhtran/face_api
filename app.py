@@ -62,7 +62,6 @@ def recognize():
         return jsonify(error="unknown"), 404
 
 if __name__ == "__main__":
-    # bind to 0.0.0.0 for Heroku, 127.0.0.1 for local
-    host = os.getenv("HOST", "127.0.0.1")
+    host = os.getenv("HOST", "0.0.0.0") 
     port = int(os.getenv("PORT", 5000))
     app.run(host=host, port=port)
