@@ -1,12 +1,19 @@
 name: faceenv
 channels:
-  - defaults
   - conda-forge
 dependencies:
   - python=3.11
+  # install dlib & cmake from conda-forge (no need for pip‐build)
+  - dlib=19.24.*
+  - cmake
+
+  # pip itself (so we can mix pip installs below)
   - pip
+
+  # the rest in pip
   - pip:
       - flask
       - flask-cors
       - face_recognition
-      - gunicorn  # ⬅️ ADD THIS LINE
+      - gunicorn
+
