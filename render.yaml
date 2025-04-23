@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: face-api
+    env: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    buildCommand: ""      # Dockerfile handles build
+    startCommand: ""      # CMD in Dockerfile handles start
+    autoDeploy: true      # Redeploy on every git push
