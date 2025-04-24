@@ -61,7 +61,7 @@ def recognize():
         if min_dist < best_dist:
             best_slug, best_dist = slug, min_dist
 
-    # tune threshold as needed
+    # tune threshold as need
     THRESHOLD = 0.6
     if best_slug and best_dist <= THRESHOLD:
         return jsonify(
